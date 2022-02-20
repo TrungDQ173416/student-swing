@@ -23,25 +23,24 @@ import javax.swing.UnsupportedLookAndFeelException;
  * @author 84969
  */
 public class sqlConnect {
-     private static Connection con = null;
-     public static User user;
-     
-    public static final ImageIcon icon = new ImageIcon(sqlConnect.class.getResource("/image/usermain.png"));
-     
-     public static Connection getConnection() throws ClassNotFoundException
-     {
+	private static Connection con = null;
+	public static User user;
+
+	public static final ImageIcon icon = new ImageIcon(sqlConnect.class.getResource("/image/usermain.png"));
+
+	public static Connection getConnection() throws ClassNotFoundException {
 		try {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-			String dbURL = "jdbc:sqlserver://localhost:1433;user=sa;password=123456;database=project1";
+			String dbURL = "jdbc:sqlserver://localhost:1433;user=sa;password=reallyStrongPwd123;database=project";
 			con = DriverManager.getConnection(dbURL);
 		} catch (SQLException ex) {
-			JOptionPane.showMessageDialog(null, "Gặp vấn đề khi kết nối dữ liệu!", 
-					"Lỗi", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Gặp vấn đề khi kết nối dữ liệu!", "Lỗi", JOptionPane.WARNING_MESSAGE);
 			System.exit(0);
 		}
-                return con;
+		return con;
 	}
-     public static String createMD5Password(String password) {	
+
+	public static String createMD5Password(String password) {
 		try {
 			MessageDigest messageDigest = MessageDigest.getInstance("MD5");
 			byte[] hashInBytes = messageDigest.digest(password.getBytes(StandardCharsets.UTF_8));
@@ -54,5 +53,5 @@ public class sqlConnect {
 			e.printStackTrace();
 		}
 		return null;
-	}    
+	}
 }
